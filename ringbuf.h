@@ -65,12 +65,12 @@ struct ringbuf * ringbuf_alloc_static(u32 size);
 struct ringbuf * ringbuf_alloc(u32 size);
 void ringbuf_free(struct ringbuf *buffer);
 void ringbuf_show_state(struct ringbuf *buffer);
+
+int  ringbuf_write(struct ringbuf *buffer, u32 length, void *data);
+void ringbuf_commit(struct ringbuf *buffer, struct ringbuf_item *item);
+struct ringbuf_item * ringbuf_reserve_item(struct ringbuf *buffer, u32 length);
+struct ringbuf_item * ringbuf_consume(struct ringbuf *buffer);
+
     
-int
-ringbuf_write(struct ringbuf *buffer, u32 length, void *data);
-struct ringbuf_item *
-ringbuf_consume(struct ringbuf *buffer);
-    
-void *
-ringbuf_item_data(struct ringbuf_item *item);
-u32 ringbuf_item_data_length(struct ringbuf_item *item);
+void * ringbuf_item_data(struct ringbuf_item *item);
+u32    ringbuf_item_data_length(struct ringbuf_item *item);

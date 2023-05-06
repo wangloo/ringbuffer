@@ -48,6 +48,16 @@ ringbuf_reserve_item(struct ringbuf *buffer, u32 length)
     return item;
 }
 
+/**
+ * @brief 执行一次 commit
+ *        为了配合 ringbuf_reserve_item() 实现 ringbuf_write()的功能
+ * 
+ */
+void ringbuf_commit(struct ringbuf *buffer, 
+        struct ringbuf_item *item)
+{
+    rb_commit(buffer, item);
+}
 
 
 /**
